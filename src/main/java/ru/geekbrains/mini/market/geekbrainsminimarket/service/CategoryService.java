@@ -2,34 +2,21 @@ package ru.geekbrains.mini.market.geekbrainsminimarket.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.geekbrains.mini.market.geekbrainsminimarket.entities.Product;
-import ru.geekbrains.mini.market.geekbrainsminimarket.repository.ProductRepository;
+import ru.geekbrains.mini.market.geekbrainsminimarket.entities.Category;
+import ru.geekbrains.mini.market.geekbrainsminimarket.repository.CategoryRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductService {
-    private ProductRepository productRepository;
+public class CategoryService {
+    private CategoryRepository categoryRepository;
 
     @Autowired
-    public void setProductRepository(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public CategoryService(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
-    }
-
-    public Optional<Product> getOneById(Long id) {
-        return productRepository.findById(id);
-    }
-
-    public Product save(Product product) {
-        return productRepository.save(product);
-    }
-
-    public void deleteById(Long id) {
-        productRepository.deleteById(id);
+    public Optional<Category> getOneById(Long id) {
+        return categoryRepository.findById(id);
     }
 }

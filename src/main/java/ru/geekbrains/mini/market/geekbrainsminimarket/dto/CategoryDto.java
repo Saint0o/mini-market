@@ -1,21 +1,26 @@
 package ru.geekbrains.mini.market.geekbrainsminimarket.dto;
 
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.geekbrains.mini.market.geekbrainsminimarket.entities.Category;
 import ru.geekbrains.mini.market.geekbrainsminimarket.entities.Product;
 
-@Data
+import javax.persistence.*;
+import java.util.List;
+import java.util.stream.Collectors;
+
+
 @NoArgsConstructor
-public class ProductDto {
+@Data
+public class CategoryDto {
     private Long id;
     private String title;
-    private int price;
-    private String categoryName;
+    private List<ProductDto> products;
 
-    public ProductDto(Product product) {
-        this.id = product.getId();
-        this.title = product.getTitle();
-        this.price = product.getPrice();
-        this.categoryName = product.getCategory().getTitle();
+    public CategoryDto(Category c) {
+        this.id = c.getId();
+        this.title = c.getTitle();
+        this.products = c.getProducts().stream().map(ProductDto::new).collect(Collectors.toList());
     }
 }
